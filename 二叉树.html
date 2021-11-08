@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function treeNode(val) {
+      this.val = val
+      this.left = this.right = null
+    }
+    var a = new treeNode(1)
+    console.log(a);
+    const root = {
+      val: 'A',
+      left: {
+        val: 'B',
+        left: {
+          val: 'D'
+        },
+        right: {
+          val: 'E'
+        }
+      },
+      right: {
+        val: 'C',
+        right: {
+          val: 'F'
+        }
+      }
+    }
+    // 先序遍历
+    function preorder(node){
+      if(!node) return
+      console.log('当前遍历节点是'+node.val);
+      preorder(node.left)
+      preorder(node.right)
+    }    // 中序遍历
+    function inorder(node){
+      if(!node) return
+      inorder(node.left)
+      console.log('当前遍历节点是'+node.val);
+      inorder(node.right)
+    }
+     // 后序遍历
+    function postorder(node){
+      if(!node) return
+      postorder(node.left)
+      postorder(node.right)
+      console.log('当前遍历节点是'+node.val);
+    }
+    // preorder(root)
+    //  inorder(root)
+    postorder(root)
+  </script>
+</body>
+
+</html>

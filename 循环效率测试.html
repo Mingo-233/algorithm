@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+</body>
+<script>
+
+    function foreachHandle() {
+        var arr = new Array(100000).fill(1)
+        var startTime = +new Date()
+        arr.forEach((item, index) => {
+            arr[index] += Math.random()
+        });
+        var endTime = +new Date()
+        var time = endTime - startTime
+        console.log(time);
+    }
+    function mapHandle() {
+        var arr = new Array(100000).fill(1)
+        var startTime = +new Date()
+        arr.map((item, index) => {
+            arr[index] += Math.random()
+        });
+        var endTime = +new Date()
+        var time = endTime - startTime
+        console.log(time);
+    }
+    function forHandle() {
+        var arr = new Array(100000).fill(1)
+        var startTime = +new Date()
+        for (let index = 0; index < arr.length; index++) {
+            arr[index] = Math.random()
+
+        }
+        var endTime = +new Date()
+        var time = endTime - startTime
+        console.log(time);
+    }
+    foreachHandle()
+    forHandle()
+    mapHandle()
+</script>
+
+</html>

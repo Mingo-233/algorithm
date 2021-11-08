@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var nums = [-1, 0, 1, 2, -1, -4]
+    function sum(nums) {
+      let res = []
+      // 正序
+      nums = nums.sort((a, b) => a - b)
+      let n = nums.length
+      for (let i = 0; i < n - 2; i++) {
+        //定义左指针
+        let l = i + 1
+        //定义右指针
+        let r = n - 1
+        if (i > 0 && nums[i] === nums[i - 1]) continue
+        while (l < r) {
+          if (nums[i] + nums[l] + nums[r] > 0) {
+            r--
+            while (l < r && nums[r] === nums[r - 1]) {
+              r--
+            }
+          } else if (nums[i] + nums[l] + nums[r] < 0) {
+            l++
+            while (l < r && nums[l] === nums[l - 1]) {
+              l++
+            }
+          } else {
+            res.push([nums[i], nums[l], nums[r]])
+            r--
+            l++
+            // 若左指针元素重复，跳过
+            while (l < r && nums[l] === nums[l - 1]) {
+              l++
+            }
+            // 若右指针元素重复，跳过
+            while (l < r && nums[r] === nums[r + 1]) {
+              r--
+            }
+          }
+        }
+      }
+      return res
+    }
+    const answer = sum(nums)
+    console.log(answer);
+  </script>
+</body>
+
+</html>

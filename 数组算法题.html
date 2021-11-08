@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var nums = [2, 7, 11, 15]
+    var target = 13
+    // 通过对象
+    function twoSum(nums,target){
+      var diffs = {}
+      for (let index = 0; index < nums.length; index++) {
+        if(diffs[target-nums[index]] !== undefined){
+          return [diffs[target-nums[index]],index]
+        }
+          diffs[nums[index]] = index
+      }
+    }
+    // 通过map
+    function twoSum2(nums,target){
+       var diffs = new Map()
+      for (let index = 0; index < nums.length; index++) {
+        if(diffs.get(target-nums[index]) !== undefined){
+          return [diffs.get(target-nums[index]),index]
+        }
+        diffs.set(nums[index],index)
+      }
+    }
+    // const answer = twoSum(nums,target)
+    const answer = twoSum2(nums,target)
+    console.log(answer);
+
+  </script>
+</body>
+</html>
