@@ -56,19 +56,28 @@
     }
     merge(nums1, m, nums2, n)
     console.log(nums1);
+    let arr = [{
+      name: "11",
+      age: 12
+    },
+    {
+      name: "22",
+      age: 23
+    }]
     function ab() {
       try {
-        d.forEach(item => {
-          if (item > 4) {
-            throw new Error('chucu2l')
-            // return new Error('chucuol')
-          }
-          console.log('1111');
-        })
+        arr.forEach((item,index) => {
+          console.log(index);
+          if (item.age === 23) {
 
-        console.log(2222);
+            console.log('??'+index);
+            arr.splice(index,1)
+          }
+        })
+console.log(arr);
       } catch (err) {
         console.log(err);
+
       }
     }
     let d = [1, 4, 5, 6,]
