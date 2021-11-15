@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  <div id="tkl">abbababab</div>
+  <button onclick="copy()">btn</button>
   <script>
     let nums = [2, 7, 11, 15]
 
@@ -56,33 +58,20 @@
     }
     merge(nums1, m, nums2, n)
     console.log(nums1);
-    let arr = [{
-      name: "11",
-      age: 12
-    },
-    {
-      name: "22",
-      age: 23
-    }]
-    function ab() {
-      try {
-        arr.forEach((item,index) => {
-          console.log(index);
-          if (item.age === 23) {
+    function copy() {
+   const range = document.createRange();
+   console.log(range);
+   range.selectNode(document.getElementById('tkl'));
+   console.log(range);
 
-            console.log('??'+index);
-            arr.splice(index,1)
-          }
-        })
-console.log(arr);
-      } catch (err) {
-        console.log(err);
+   const selection = window.getSelection();
+   console.log(selection);
+   if (selection.rangeCount > 0) selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+     alert("复制淘口令成功......");
+}
 
-      }
-    }
-    let d = [1, 4, 5, 6,]
-
-    ab()
 
   </script>
 </body>
