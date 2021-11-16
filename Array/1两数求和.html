@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let nums = [2, 7, 11, 15]
+
+    let map = {}
+    let target = 9
+    function handle(target) {
+      for (let i = 0; i < nums.length; i++) {
+        map[nums[i]] = i
+
+        if (map[target - nums[i]] !== undefined) {
+          console.log(1);
+          return [map[target - nums[i]], i]
+        }
+      }
+    }
+    let k = handle(target)
+    console.log(k);
+
+
+
+  </script>
+</body>
+
+</html>
