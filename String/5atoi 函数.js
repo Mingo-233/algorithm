@@ -27,5 +27,3 @@ const myAtoi = function (str) {
 }
 
 console.log(myAtoi('   d123sd'));
-
-
