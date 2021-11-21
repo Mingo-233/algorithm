@@ -1,31 +1,36 @@
-// 真题描述：请你来实现一个 atoi 函数，使其能将字符串转换成整数。
-const myAtoi = function (str) {
-  const max = 2 ** 31 - 1
-  const min = -max - 1
-  let targetNum = 0
-  const reg = /\s*([-\+]?[0-9]*).*/
-  // 得到捕获组
-  const groups = str.match(reg)
-  console.log(groups);
-  if (groups) {
-    // 尝试转化捕获到的结构
-    targetNum = +groups[1]
-    // 注意，即便成功，也可能出现非数字的情况，比如单一个'+'
-    if (isNaN(targetNum)) {
-      // 不能进行有效的转换时，请返回 0
-      targetNum = 0
-    }
-  }
-  // 卡口判断
-  if (targetNum > max) {
-    return max
-  } else if (targetNum < min) {
-    return min
-  }
-  // 返回转换结果
-  return targetNum
-}
+// 真题描述：给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
 
-console.log(myAtoi('   d123sd'));
+// 示例：
+// 给定一个链表: 1->2->3->4->5, 和 n = 2.
+// 当删除了倒数第二个结点后，链表变为 1->2->3->5.
+let aList = [1, 2, 3, 4, 5]
 
+let ListNodea = createList(aList)
+
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+ const removeNthFromEnd = function(head, n) {
+  // 初始化 dummy 结点
+  let dummy = new ListNode()
+  dummy.next = head
+  let curFast = dummy
+  let curSlow = dummy
+  while (n>0&&curFast.next) {
+    curFast = curFast.next
+    n--
+  }
+  while (curFast&&curFast.next) {
+    curFast = curFast.next
+    curSlow = curSlow.next    
+  }
+  curSlow.next = curSlow.next.next
+  return dummy.next
+};
+
+console.log(removeNthFromEnd(ListNodea,2));
+
+// console.log(ListNodea);
 
