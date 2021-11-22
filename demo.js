@@ -1,36 +1,26 @@
-// 真题描述：给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+// 局部反转一个链表
+// 真题描述：反转从位置 m 到 n 的链表。请使用一趟扫描完成反转。
 
-// 示例：
-// 给定一个链表: 1->2->3->4->5, 和 n = 2.
-// 当删除了倒数第二个结点后，链表变为 1->2->3->5.
+// 说明:
+// 1 ≤ m ≤ n ≤ 链表长度。
+// 示例:
+// 输入: 1->2->3->4->5->NULL, m = 2, n = 4
+// 输出: 1->4->3->2->5->NULL
+
 let aList = [1, 2, 3, 4, 5]
 
 let ListNodea = createList(aList)
 
 /**
  * @param {ListNode} head
+ * @param {number} m
  * @param {number} n
  * @return {ListNode}
  */
- const removeNthFromEnd = function(head, n) {
-  // 初始化 dummy 结点
-  let dummy = new ListNode()
-  dummy.next = head
-  let curFast = dummy
-  let curSlow = dummy
-  while (n>0&&curFast.next) {
-    curFast = curFast.next
-    n--
-  }
-  while (curFast&&curFast.next) {
-    curFast = curFast.next
-    curSlow = curSlow.next    
-  }
-  curSlow.next = curSlow.next.next
-  return dummy.next
+const reverseBetween = function (head,m,n) {
+
 };
 
-console.log(removeNthFromEnd(ListNodea,2));
+console.log(reverseBetween(ListNodea));
 
 // console.log(ListNodea);
-
