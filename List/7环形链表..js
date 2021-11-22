@@ -5,8 +5,6 @@
 
 // 输入：[3,2,0,4]（链表结构如下图） 输出：true
 // 解释：链表中存在一个环
-let aList = [1, 2, 3, 4, 5]
-let ListNodea = createList(aList)
 
 /**
  * @param {ListNode} head
@@ -15,7 +13,7 @@ let ListNodea = createList(aList)
 // 入参是头结点 
 const hasCycle = function(head) {
   while (head) {
-    
+    // 如果 flag 已经立过了，那么说明环存在
     if(head.flag){
       return true
     }else{
@@ -38,28 +36,5 @@ const hasCycle = function(head) {
 //   } 
 //   return false
 // };
-var detectCycle = function(head) {
-  if (head === null) {
-      return null;
-  }
-  let slow = head, fast = head;
-  while (fast !== null) {
-      slow = slow.next;
-      if (fast.next !== null) {
-          fast = fast.next.next;
-      } else {
-          return null;
-      }
-      if (fast === slow) {
-          let ptr = head;
-          while (ptr !== slow) {
-              ptr = ptr.next;
-              slow = slow.next;
-          }
-          return ptr;
-      }
-  }
-  return null;
-};
 
 console.log(null==null);
