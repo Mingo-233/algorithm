@@ -1,30 +1,11 @@
 // 环形链表基本问题——如何判断链表是否成环？
-// 真题描述：给定一个链表，判断链表中是否有环。
-
+// 真题描述：给定一个链表，判断链表中是否有环。 快慢指针法（不可更改链表属性条件下）
 // 示例 1：
 
-// 输入：[3,2,0,4]（链表结构如下图） 输出：true
+// 输入：[1,2,3,4->2]（链表结构如下图） 输出：不存在链表返回null，若存在返回环口
 // 解释：链表中存在一个环
-let aList = [1, 2, 3, 4, 5]
-let ListNodea = createList(aList)
 
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
-// 入参是头结点 
-const hasCycle = function(head) {
-  while (head) {
-    
-    if(head.flag){
-      return true
-    }else{
-      head.flag = true
-      head = head.next
-    }
-  }
-  return false
-};
+
 let a = new ListNode('1')
 let b = new ListNode('2')
 let c = new ListNode('3')
@@ -41,17 +22,12 @@ var detectCycle = function(head) {
   }
   let slow = head, fast = head;
   while (fast !== null) {
-    console.log(1);
       slow = slow.next;
       if (fast.next !== null) {
-        console.log('??');
           fast = fast.next.next;
       } else {
           return null;
       }
-      console.log(fast);
-      console.log(slow);
-      debugger
       if (fast === slow) {
           let ptr = head;
           while (ptr !== slow) {

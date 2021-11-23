@@ -23,18 +23,3 @@ const hasCycle = function(head) {
   }
   return false
 };
-
-// const hasCycle2 = function(head) {
-//   let slowCur =head
-//   let fastCur =head
-//   let i=0,j=0
-//   while () {
-//     slowCur=slowCur.next
-//     i=i+1
-//     fastCur=fastCur.next.next
-//     j=j+2
-//   } 
-//   return false
-// };
-
-console.log(null==null);
