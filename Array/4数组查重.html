@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //题目：三个数组找共有值
+    const arr1 = [1, 2, 3, 4, 4, 10]
+    const arr2 = [1, 1, 1, 4, 5, 10]
+    const arr3 = [4, 10, 12]
+    // 输出 [4, 10]
+    function coommonArray(arr1, arr2, arr3) {
+      let map = {}
+      let result = []
+      for (let index = 0; index < arr1.length; index++) {
+        map[arr1[index]]=false
+      }
+      for (let index = 0; index < arr2.length; index++) {
+        if(map[arr2[index]]==false){
+          map[arr2[index]] = true
+        }
+      }
+      for (let index = 0; index < arr3.length; index++) {
+        console.log(map);
+        if(map[arr3[index]]==true){
+          result.push(arr3[index])
+        }
+      }
+      return result
+    }
+    console.log(coommonArray(arr1, arr2, arr3))
+
+  </script>
+
+</body>
+
+</html>
