@@ -19,16 +19,16 @@
       let map = {}
       let result = []
       for (let index = 0; index < arr1.length; index++) {
-        map[arr1[index]]=false
+        map[arr1[index]] = false
       }
       for (let index = 0; index < arr2.length; index++) {
-        if(map[arr2[index]]==false){
+        if (map[arr2[index]] == false) {
           map[arr2[index]] = true
         }
       }
       for (let index = 0; index < arr3.length; index++) {
         console.log(map);
-        if(map[arr3[index]]==true){
+        if (map[arr3[index]] == true) {
           result.push(arr3[index])
         }
       }
@@ -36,6 +36,17 @@
     }
     console.log(coommonArray(arr1, arr2, arr3))
 
+    const newArr = [arr1, arr2, arr3].reduce((total, item) => {
+      console.log(1);
+      return [...new Set([...total, ...item].filter((s, i, arr) => {
+        console.log(2);
+        return arr.indexOf(s) !== arr.lastIndexOf(s)
+
+      }
+      )
+      )
+    ]
+    })
   </script>
 
 </body>
