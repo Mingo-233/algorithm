@@ -20,7 +20,7 @@
  * @param {number} k
  * @return {number[]}
  */
-const maxSlidingWindow = function (nums, k) {
+ const maxSlidingWindow = function (nums, k) {
   // 缓存数组的长度
   const len = nums.length;
   // 初始化结果数组
