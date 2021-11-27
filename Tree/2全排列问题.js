@@ -16,7 +16,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-const permute = function (nums) {
+ const permute = function (nums) {
   const result = []
   // curGroup 变量用来记录当前的排列内容
   const curGroup = []
