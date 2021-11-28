@@ -1,3 +1,4 @@
+ // 链表节点
  function ListNode(val) {
   this.val = val;
   this.next = null;
@@ -39,3 +40,8 @@ const root = {
     }
   }
 };
+// 二叉树节点
+function treeNode(val) {
+  this.val = val
+  this.left = this.right = null
+}
