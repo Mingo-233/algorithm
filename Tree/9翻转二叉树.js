@@ -22,11 +22,11 @@
  * @return {TreeNode}
  */
  const invertTree = function(root) {
-   if(!root) return root
-   const leftNode = invertTree(root.left)
-   const rightNode = invertTree(root.right)
-   root.left = rightNode
-   root.right = leftNode
-   return root
+  if(!root) return root
+  const leftNode = invertTree(root.left)
+  const rightNode = invertTree(root.right)
+  root.left = rightNode
+  root.right = leftNode
+  return root
 };
 console.log(invertTree(root));
