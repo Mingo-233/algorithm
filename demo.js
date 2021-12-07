@@ -1,53 +1,35 @@
-/* 
-题目描述：给你一棵二叉搜索树，请你返回一棵平衡后的二叉搜索树，新生成的树应该与原来的树有着相同的节点值。
-
-如果一棵二叉搜索树中，每个节点的两棵子树高度差不超过 1 ，我们就称这棵二叉搜索树是平衡的。
-如果有多种构造方法，请你返回任意一种。
-      1               2
-        2           1   3
-          3               4
-            4    =》
-*/
-
-const tree = {
-  val: 1,
-  right: {
-    val: 2,
-    right: {
-      val: 3,
-      right: {
-        val: 4
-      }
-    },
-  },
-
-}
+let a = [10,9,2,5,3,7,101,18]
 /**
- * @param {TreeNode} root
- * @return {TreeNode}
+ * @param {number[]} nums
+ * @return {number}
  */
-const balanceBST = function (root) {
-  let nums = []
-  // 将输入的tree进行中序遍历，将节点记录到数组中 (因为输入的树一定是二叉搜索树，所以输出的数组一定是已经排序过的)
-  function inorder (root) {
-    if (!root) return
-    inorder(root.left)
-    nums.push(root.val)
-    inorder(root.right)
+// 入参是一个数字序列
+const lengthOfLIS = function(nums) {
+  // 缓存序列的长度
+  const len = nums.length  
+  // 处理边界条件
+  if(!len) {
+      return 0
   }
-  // 构造平衡二叉树  与13节二叉搜索树构造一致
-  function buildAVL (low, high) {
-    if (low > high) return null
-    let mid = Math.floor((high - (high - low) / 2))
-    let newTreeNode = new treeNode(nums[mid])
-    newTreeNode.left = buildAVL(low, mid - 1)
-    newTreeNode.right = buildAVL(mid + 1, high)
-    return newTreeNode
+  // 初始化数组里面每一个索引位的状态值
+  const dp = (new Array(len)).fill(1)
+  // 初始化最大上升子序列的长度为1
+  let maxLen = 1 
+  // 从第2个元素开始，遍历整个数组
+  for(let i=1;i<len;i++) {
+      // 每遍历一个新元素，都要“回头看”，看看能不能延长原有的上升子序列
+      for(let j=0;j<i;j++) {  
+          // 若遇到了一个比当前元素小的值，则意味着遇到了一个可以延长的上升子序列，故更新当前元素索引位对应的状态
+          if(nums[j]<nums[i]) {
+              dp[i] = Math.max(dp[i], dp[j] + 1)  
+          }
+      }
+      // 及时更新上升子序列长度的最大值
+      if(dp[i] > maxLen) {
+          maxLen = dp[i]
+      }
   }
-  inorder(root)
-  console.log(nums);
-
-  return buildAVL(0, nums.length-1)
+  // 遍历完毕，最后到手的就是最大上升子序列的长度
+  return maxLen
 };
-console.log(tree);
-console.log(balanceBST(tree));
+console.log(lengthOfLIS(a));
