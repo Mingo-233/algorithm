@@ -1,13 +1,10 @@
-// let a = [5, 1, 3, 7, 2, 0, 6]
-let a = [5, 1, 3, 7]
-
+let a = [5, 1, 3, 7, 2, 0, 6]
 // 快速排序入口
 function quickSort (arr, left = 0, right = arr.length - 1) {
    // 定义递归边界，若数组只有一个元素，则没有排序必要
   if (arr.length > 1) {
        // lineIndex表示下一次划分左右子数组的索引位
     let lineIndex  = partition(arr, left, right)
-    console.log(lineIndex);
      // 如果左边子数组的长度不小于1，左边仍存在数据，则递归快排这个子数组
     if (left < lineIndex  - 1) {
       quickSort(arr, left, lineIndex -1)
