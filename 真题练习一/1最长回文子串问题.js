@@ -60,3 +60,4 @@
   // 最后依据端点值把子串截取出来即可
   return s.substring(st,end+1);
 }
+console.log(longestPalindrome(babad));

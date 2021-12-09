@@ -1,54 +1,63 @@
-// let a = [5, 1, 3, 7, 2, 0, 6]
-let a = [5, 1, 3, 7]
+/*
+题目描述：给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
 
-// 快速排序入口
-function quickSort (arr, left = 0, right = arr.length - 1) {
-   // 定义递归边界，若数组只有一个元素，则没有排序必要
-  if (arr.length > 1) {
-       // lineIndex表示下一次划分左右子数组的索引位
-    let lineIndex  = partition(arr, left, right)
-    console.log(lineIndex);
-     // 如果左边子数组的长度不小于1，左边仍存在数据，则递归快排这个子数组
-    if (left < lineIndex  - 1) {
-      quickSort(arr, left, lineIndex -1)
-    }
-    if (right > lineIndex ) {
-      quickSort(arr, lineIndex , right)
-    }
+示例 1：
+
+输入: "babad"
+输出: "bab"
+注意: "aba" 也是一个有效答案。
+
+示例 2：
+
+输入: "cbbd"
+输出: "bb"
+
+命题关键字：字符串、动态规划
+ */
+/**
+ * @param {string} s
+ * @return {string}
+ */
+ const longestPalindrome = function(s) {
+  const dp = [];
+  // 缓存字符串长度
+  const len = s.length
+  // 初始化状态二维数组
+  for (let i = 0; i < len; i ++) {
+      dp[i] = [];
+  };
+  
+  // 初始化最长回文子串的两个端点值
+  let st = 0, end=0
+  // 初始化最长回文子串的初始值为1
+  for(let i=0;i<len;i++) {
+      dp[i][i] = 1
   }
-  return arr
-}
-// 以基准值为轴心，划分左右子数组的过程
-function partition (arr, left, right) {
-  let mid = Math.floor(left + (right - left) / 2)
-  let baseValue = arr[mid]
-  // 初始化左右指针
-  let i = left
-  let j = right
-  while (i <= j) {
-    // 左边要找到一个大于等于基准值的数据
-    while (arr[i] < baseValue) {
-      i++
-    }
-    // 右边要找到一个小于等于基准值的数据
-    while (arr[j] > baseValue) {
-      j--
-    }
-    // 走到这一步 若i仍<=j，则说明上面着基准值左边存在较大元素或右边存在较小元素，最差的情况是基准值就是中位数，交换了也没有关系，后面以当前为基准序进行分割
-    if (i <= j) {
-      // 交换两个元素确保左右两侧有序
-      swap(arr, i, j)
-      i++
-      j--
-    }
+  // 这里为了降低题目的复杂度，我们预先对悬念比较小的 s[i][i+1] 也做了处理
+  for(let i=0;i<len-1;i++){
+      if(s[i]===s[i+1]) {
+          dp[i][i+1] = 1
+          st = i 
+          end = i+1
+      }
   }
-  return i
+  
+  // n 代表子串的长度，从3开始递增
+  for(let n=3;n<=len;n++) {
+      // 下面的两层循环，用来实现状态转移方程
+      for(let i=0;i<=len-n;i++) {
+          let j = i+n-1
+          if(dp[i+1][j-1]) {
+              if(s[i]===s[j]){
+                  // 若定位到更长的回文子串，则更新目标子串端点的索引值
+                  dp[i][j] = 1
+                  st = i 
+                  end = j
+              }
+          }
+      }
+  }
+  // 最后依据端点值把子串截取出来即可
+  return s.substring(st,end+1);
 }
-
-// 快速排序中使用 swap 的地方比较多，我们提取成一个独立的函数
-function swap (arr, i, j) {
-  [arr[i], arr[j]] = [arr[j], arr[i]]
-}
-
-
-console.log(quickSort(a));
+console.log(longestPalindrome('babad'));
