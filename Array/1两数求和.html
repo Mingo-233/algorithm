@@ -11,23 +11,22 @@
 <body>
   <script>
     let nums = [2, 7, 11, 15]
-
+    let nums2 = [3, 2, 4]
     let map = {}
     let target = 9
-    function handle(target) {
+    function handle(nums, target) {
       for (let i = 0; i < nums.length; i++) {
         map[nums[i]] = i
-
-        if (map[target - nums[i]] !== undefined) {
-          console.log(1);
+        //不能等于自身
+        if (map[target - nums[i]] !== undefined && map[target - nums[i]] !== i) {
           return [map[target - nums[i]], i]
         }
       }
     }
-    let k = handle(target)
+    console.time('aa')
+    let k = handle(nums2, 6)
     console.log(k);
-
-
+    console.timeEnd('aa')
 
   </script>
 </body>
