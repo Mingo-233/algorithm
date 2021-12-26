@@ -10,7 +10,7 @@
 
 let a = [5, 3, 2, 4, 1]
 function insertSort(arr) {
-  const len = arr.lengthv
+  const len = arr.length
   // i从1 开始，前面的数据只有一个，所以可以看成有序数组。当i为2时，前面的两位就是一个有序数组，当i为3，以此类推。。
   for (let i = 1; i < len; i++) {
     // 记录当前值
