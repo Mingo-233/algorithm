@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    不修改和删除下列代码，添加代码，使其运行成功：
+    let [a, b] = {a:1, b: 2};
+    console.log(a, b); // 1, 2
+    <script>
+        Object.prototype[Symbol.iterator] = function () {
+            let index = 0;
+            let props = Object.keys(this);
+            let originObj = {};
+            for (const key of props) {
+                originObj[key] = this[key];
+            }
+            return {
+                next: function () {
+                    if (index >= props.length) {
+                        return { done: true };
+                    } else {
+                        index++;
+                        return { value: originObj[props[index - 1]], done: false };
+                    }
+                },
+            };
+        };
+
+        console.dir(Object);
+
+        let [a, b] = { a: 1, b: 2 };
+        console.log(a, b);
+    </script>
+</body>
+
+</html>

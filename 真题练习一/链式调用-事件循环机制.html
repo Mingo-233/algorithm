@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    4. 实现一个 dispatch 函数，可以根据不同的参数打印出不同的字符串，同时支持链式调用：
+    当传入字符串"a"时，可以直接打印出字符串"a"。
+
+    dispatch('a');
+    > "a"
+    当调用 println("b") 方法时，可以打印出字符串"b"。
+
+    dispatch('a').println('b')
+    > "a"
+    > "b"
+    当调用 wait(n) 方法时，可以先等待 n 秒，然后再执行后面的操作。
+
+    dispatch('a').wait(3).println('b')
+    > "a"
+    > 3秒后
+    > "b"
+    当调用 waitFirst(n) 方法时，所有操作延后，先等待 n 秒，。
+
+    dispatch('a').waitFirst(3).println('b')
+    > 3秒后
+    > "a"
+    > "b"
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function dispatchM(params) {
+            const app = {
+                taskLine: [
+                    function () {
+                        console.log(params)
+                    }
+                ],
+                println: function (info) {
+                    this.taskLine.push(function () {
+                        if (info) console.log(info)
+                    })
+                    return this
+                },
+                wait: function (time) {
+                    this.taskLine.push(sleep(time))
+                    return this
+                },
+                waitFirst: function (time) {
+                    this.taskLine.unshift(sleep(time))
+
+                    return this
+                }
+
+            }
+            setTimeout(async () => {
+                // console.log(app.taskLine);
+                for (let i = 0; i < app.taskLine.length; i++) {
+                    const task = app.taskLine[i];
+                    // console.log(task);
+                    if (task instanceof Promise) {
+                        await task
+                    } else {
+                        await task.call(app)
+
+                    }
+
+                }
+            }, 0);
+
+
+            return app
+        }
+
+        // 示例用法：
+        // dispatchM('a').println('b');
+        // 输出：
+        // "a"
+        // "b"
+
+        // dispatchM('a').wait(3000).println('b');
+        // 输出：
+        // "a"
+        // （等待3秒后）
+        // "b"
+        // dispatchM('a').println('b');
+        dispatchM('a').waitFirst(3000).println('b');
+        // 输出：
+        // （等待3秒后）
+        // "a"
+        // "b"
+
+
+
+
+    </script>
+</body>
+
+</html>
