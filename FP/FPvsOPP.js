@@ -38,6 +38,7 @@ function likeLessons(user, lessons) {
 
 // “注册课程”功能函数
 function registerLessons(user, a) {
+    // 这里的a是拿不到的
     console.log('registerLessons', a);
     return {
         ...user,
@@ -69,6 +70,8 @@ function isVIP(user) {
 const pipe = (...funcs) => funcs.reduce(
     // 同样是基于 reduce 实现，主要的区别在于对组合链入参的处理不同
     (f, g) => (...args) => {
+        // 下面这行打印，会在所有的fn执行之前执行
+        // 而且在没有设定初始值的情况下，例如执行3gfn，这里只会打印2次 这是因为reduce在没有初始值时的特性
         console.log(args);
 
         return g(f(...args))
@@ -81,6 +84,7 @@ let a = pipe(
     emptyUserLiked,
     // isVIP,
     // 这个 pipe 竟然可以接收多个入参，为什么呢？当然是因为“对组合链入参的处理不同”啦！
+    //  这里的多个入参，只有管道中的第一个函数可以拿到，后面的是拿不到的
 )(user, myLessons)
 console.log(a);
 

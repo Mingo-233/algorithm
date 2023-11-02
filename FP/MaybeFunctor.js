@@ -15,7 +15,7 @@ function add4(x) {
 }
 
 function add8(x) {
-    x + 8
+    return x + 8
 }
 
 function toString(x) {
