@@ -17,17 +17,17 @@ const root = {
   }
 };
 
-function BFC(root){
+function BFC(root) {
   //初始化队列
   const queue = []
   queue.push(root)
-  while (queue.length!=0) {
+  while (queue.length != 0) {
     const top = queue[0]
-    console.log('现在访问的是'+top.val);
-    if(top.left){
+    console.log('现在访问的是' + top.val);
+    if (top.left) {
       queue.push(top.left)
     }
-    if(top.right){
+    if (top.right) {
       queue.push(top.right)
     }
     // 访问完毕，队头元素出队
@@ -36,3 +36,12 @@ function BFC(root){
   }
 }
 BFC(root)
+
+function DFC(root) {
+  if (root) {
+    console.log('当前访问对象', root.val);
+    DFC(root.left)
+    DFC(root.right)
+  }
+}
+// DFC(root)
